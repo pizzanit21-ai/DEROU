@@ -1,0 +1,6 @@
+{
+  "name": "GoldSignal",
+  "description": "Bot de Trade Telegram pour signaux XAUUSD, Forex et Crypto avec gestion des limites journalières et historique.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

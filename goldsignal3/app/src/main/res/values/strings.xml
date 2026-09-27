@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GoldSignal</string>
+    <string name="title_trade_signal">Signal de Trade</string>
+    <string name="subtitle_daily_limit">Limite stricte : 2 trades par jour maximum</string>
+    <string name="label_asset">Actif</string>
+    <string name="label_order_type">Type d\'ordre</string>
+    <string name="label_entry">Prix d\'entrée (Entry)</string>
+    <string name="placeholder_entry">Ex: 2350.50 ou 1.0850</string>
+    <string name="label_sl">Stop Loss (SL)</string>
+    <string name="placeholder_sl">Ex: 2340.00 ou 1.0800</string>
+    <string name="label_tp">Take Profit (TP)</string>
+    <string name="placeholder_tp">Ex: 2370.00 ou 1.0950</string>
+    <string name="btn_send_trade">Exécuter et Envoyer sur Telegram</string>
+    <string name="tab_new_signal">Nouveau Signal</string>
+    <string name="tab_history">Historique</string>
+    <string name="tab_settings">Configuration</string>
+</resources>
