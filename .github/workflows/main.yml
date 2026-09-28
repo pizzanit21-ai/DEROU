@@ -19,9 +19,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Accept Android Licenses
+      - name: Accept Android Licenses & Install SDK
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" || true
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -31,16 +32,14 @@ jobs:
       - name: Prepare build environment
         run: |
           cd goldsignal3
-          if [ ! -f .env ]; then
-            cp .env.example .env
-          fi
-          if [ ! -f debug.keystore ]; then
-            keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -keypass android -storepass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-          fi
+          echo "GEMINI_API_KEY=" > .env
+          echo "GEMINI_API_KEY=" > .env.example
+          rm -f debug.keystore
+          keytool -genkeypair -v -keystore debug.keystore -alias androiddebugkey -keypass android -storepass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
       - name: Build Debug APK
         working-directory: goldsignal3
-        run: gradle assembleDebug --stacktrace
+        run: gradle assembleDebug -Dorg.gradle.jvmargs="-Xmx3g" -Dorg.gradle.workers.max=2 --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
